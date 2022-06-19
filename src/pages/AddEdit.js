@@ -10,8 +10,9 @@ const initialState = {
     contact: ""
 }
 
-
 const AddEdit = () => {
+    let navigate = useNavigate();
+    const {id}=useParams();
 
     const [user, setUser] = useState(initialState);
     const [data, setData] = useState({});
@@ -23,7 +24,32 @@ const AddEdit = () => {
         setUser({ ...user, [name]: value });
 
     }
-    let navigate = useNavigate();
+
+    useEffect(()=>{
+        fireDb.child("contacts").on("value",(snapshot)=>{
+            if(snapshot.val()!==null){
+                setData({...snapshot.val()});
+            }else{
+                setData({});
+            }
+        });
+        return ()=>{ //componentWillUnmount() //SetDatayı temizliyor.
+            setData({});
+        };
+    },[id]);
+
+    useEffect(()=>{
+        if(id){
+            setUser({...data[id]})
+        }else{
+             setUser({...initialState});   
+        }
+
+        return()=>{    //componentWillUnmount()
+            setUser({...initialState});   
+        }
+    },[id,data])
+
 
 
     const handleSubmit = (e) => {
@@ -58,7 +84,7 @@ const AddEdit = () => {
                     id="name"
                     name="name"
                     placeholder='Your Name...'
-                    value={name}
+                    value={name||""}
                     onChange={handleInputChange} />
 
                 <label htmlFor='name'> Email </label>
@@ -67,7 +93,7 @@ const AddEdit = () => {
                     id="email"
                     name="email"
                     placeholder='Your email...'
-                    value={email}
+                    value={email||""}
                     onChange={handleInputChange} />
 
                 <label htmlFor='name'> Contact no </label>
@@ -76,7 +102,7 @@ const AddEdit = () => {
                     id="contact"
                     name="contact"
                     placeholder='Your Contact No...'
-                    value={contact}
+                    value={contact||""}
                     onChange={handleInputChange} />
 
                 <input type="submit" value="Save" />
