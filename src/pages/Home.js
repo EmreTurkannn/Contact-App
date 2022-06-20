@@ -3,11 +3,12 @@ import fireDb from "../firebase"
 import { Link } from "react-router-dom"
 import "./Home.css";
 import { toast } from 'react-toastify';
-
+import { useNavigate, useParams } from 'react-router-dom'
 
 const Home = () => {
 
   const [user, setUser] = useState({});
+  let navigate = useNavigate();
 
   useEffect(() => {
     fireDb.child("contacts").on("value", (snapshot) => {
@@ -33,6 +34,8 @@ const Home = () => {
       });
     }
   }
+
+  
   return (
     <div style={{ marginTop: "100px" }}>
       <table className='styled-tabled'>
@@ -60,7 +63,7 @@ const Home = () => {
                   </Link>
                   <button className='btn btn-delete' onClick={() => onDelete(id)}>delete</button>
                   <Link to={`/view/${id}`}>
-                    <button className='btn btn-edit'>Edit</button>
+                    <button className='btn btn-edit'>View</button>
                   </Link>
                 </td>
               </tr>

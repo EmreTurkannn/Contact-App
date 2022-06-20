@@ -58,13 +58,24 @@ const AddEdit = () => {
             toast.error("Please provide value in each input field.");
         }
         else {
+            if(!id){
             fireDb.child("contacts").push(user, (err) =>{
-            if (err) {
-                toast.error(err);
-            } else {
-                toast.success("Contact Added Succesfully");
+                if (err) {
+                    toast.error(err);
+                } else {
+                    toast.success("Contact Added Succesfully");
+                }
+                });
+            }else{
+                fireDb.child(`contacts/${id}`).set(user, (err) =>{
+                    if (err) {
+                        toast.error(err);
+                    } else {
+                        toast.success("Contact Uptade Succesfully");
+                    }
+                    });
             }
-            });
+            
             setTimeout(()=>navigate("/"),500);
         }
     };
@@ -105,7 +116,7 @@ const AddEdit = () => {
                     value={contact||""}
                     onChange={handleInputChange} />
 
-                <input type="submit" value="Save" />
+                <input type="submit" value={id?"update":"save"} />
             </form>
         </div>
     )
