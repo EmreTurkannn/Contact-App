@@ -35,6 +35,9 @@ const Search = () => {
   return (
     <>
       <div style={{ marginTop: "100px" }}>
+        <Link to="/">
+          <button className='btn btn-edit'>Go Back</button>
+        </Link>
         {Object.keys(data).length === 0 ? (
 
           <h2>No Search Found with That Name : {query.get("name")}</h2>
@@ -57,6 +60,7 @@ const Search = () => {
                     <td>{data[id].name}</td>
                     <td>{data[id].email}</td>
                     <td>{data[id].contact}</td>
+                    
 
                   </tr>
                 )

@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import fireDb from "../firebase"
-import { useParams,useNavigate,Link } from 'react-router-dom'
+import { useParams,Link, useNavigate } from 'react-router-dom'
 import "./View.css"
 const View = () => {
   
@@ -8,7 +8,7 @@ const View = () => {
   
 
   const {id}=useParams();
-
+  
   useEffect(()=>{
 
     fireDb.child(`contacts/${id}`).get().then((snapshot)=>{
