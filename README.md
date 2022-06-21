@@ -9,10 +9,11 @@ Bu uygulamada Search,Sort ve Filter methodları kullanılmıştır.
 Kullanılan Teknolojiler
 ---------------------------------------------------------------------------------------------------
 React
+<br>
 React Router V6
 Firebase
 React Table
---------------------------------------------------------------------
+
 
 Projeyi Çalıştırmak İçin:
 --------------------------------------------------------------------------------
