@@ -11,13 +11,16 @@ Kullanılan Teknolojiler
 React
 <br>
 React Router V6
+<br>
 Firebase
+<br>
 React Table
 
 
 Projeyi Çalıştırmak İçin:
 --------------------------------------------------------------------------------
 cd my-app 
+<br>
 npm start
 
 Görseller
