@@ -8,6 +8,7 @@ import View from './pages/View';
 import Header from './components/Header'
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Search from './pages/Search';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/uptade/:id" element={<AddEdit/>}></Route>
         <Route path="/view/:id" element={<View/>}></Route>
         <Route path="/about" element={<About/>}></Route>
+        <Route path="/search" element={<Search/>}></Route> 
         </Routes>
         
     </div>
